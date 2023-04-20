@@ -1,0 +1,110 @@
+{
+  "@id": "dtmi:digitaltwins:Basic:Device;1",
+  "@type": "Interface",
+  "@context": [
+    "dtmi:dtdl:context;2"
+  ],
+  "displayName": "Device -v1",
+  "description": "Device data",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "DeviceId",
+      "displayName": "DeviceId",
+      "description": "The unique id of the turbine",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "TimeInterval",
+      "displayName": "TimeInterval",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Humidity",
+      "displayName": "Humidity",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Temperature",
+      "displayName": "Temperature",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Pressure",
+      "displayName": "Pressure",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "MagnetometerX",
+      "displayName": "MagnetometerX",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "MagnetometerY",
+      "displayName": "MagnetometerY",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "MagnetometerZ",
+      "displayName": "MagnetometerZ",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "AccelerometerX",
+      "displayName": "AccelerometerX",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "AccelerometerY",
+      "displayName": "AccelerometerY",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "AccelerometerZ",
+      "displayName": "AccelerometerZ",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "GyroscopeX",
+      "displayName": "GyroscopeX",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "GyroscopeY",
+      "displayName": "GyroscopeY",
+      "writable": true,
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "GyroscopeZ",
+      "displayName": "GyroscopeZ",
+      "writable": true,
+      "schema": "double"
+    }
+  ]
+}
