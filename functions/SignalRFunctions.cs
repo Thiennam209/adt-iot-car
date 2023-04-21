@@ -15,7 +15,7 @@ namespace SignalRFunctions
 {
     public static class SignalRFunctions
     {
-        public static string Deviceid;
+        public static string DeviceId;
         public static string TimeInterval;
         public static double Humidity;
         public static double Temperature;
@@ -66,7 +66,7 @@ namespace SignalRFunctions
             {
                 try
                 {
-                    Deviceid = eventGridEvent.Subject;
+                    DeviceId = eventGridEvent.Subject;
                    
                     var data = eventGridData.SelectToken("data");
                     var patch = data.SelectToken("patch");
@@ -80,7 +80,7 @@ namespace SignalRFunctions
                     //log.LogInformation($"setting alert to: {alert}");
                     var property = new Dictionary<object, object>
                     {
-                        {"Deviceid", Deviceid }
+                        {"DeviceId", DeviceId }
                         //{"Alert", alert }
                     };
                     return signalRMessages.AddAsync(

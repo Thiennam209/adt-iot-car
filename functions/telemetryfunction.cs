@@ -63,7 +63,7 @@ namespace My.Function
 
                     JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
-                    var ID = deviceMessage["body"]["DeviceID"];
+                    var ID = deviceMessage["body"]["DeviceId"];
                     var TimeInterval = deviceMessage["body"]["TimeInterval"];
                     var humidity = deviceMessage["body"]["Humidity"];
                     var temperature = deviceMessage["body"]["Temperature"];
