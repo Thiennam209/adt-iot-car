@@ -29,12 +29,12 @@ az extension add --name azure-iot -y
 git clone https://github.com/Thiennam209/adt-iot-car.git
 
 # echo 'input model'
-deviveid=$(az dt model create -n $adtname --models ./adt-iot-car/models/devive.json --query [].id -o tsv)
+deviceid=$(az dt model create -n $adtname --models ./adt-iot-car/models/device.json --query [].id -o tsv)
 
 # echo 'instantiate ADT Instances'
     echo "Create Device Deviceid1"
-    az dt twin create -n $adtname --dtmi $deviveid --twin-id "DeviveId1"
-    az dt twin update -n $adtname --twin-id "Deviveid1" --json-patch '[{"op":"add", "path":"/Deviceid", "value": "'"Deviveid1"'"}]'
+    az dt twin create -n $adtname --dtmi $deviveid --twin-id "Devideid1"
+    az dt twin update -n $adtname --twin-id "Devideid1" --json-patch '[{"op":"add", "path":"/DeviceId", "value": "'"Deviceid1"'"}]'
 
 
 # az eventgrid topic create -g $rgname --name $egname -l $location
