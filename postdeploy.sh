@@ -34,7 +34,7 @@ deviveid=$(az dt model create -n $adtname --models ./adt-iot-car/models/devive.j
 # echo 'instantiate ADT Instances'
     echo "Create Devive Deviveid1"
     az dt twin create -n $adtname --dtmi $deviveid --twin-id "Deviveid1"
-    az dt twin update -n $adtname --twin-id "Deviveid1" --json-patch '[{"op":"add", "path":"/DeviveId", "value": "'"Deviveid1"'"}]'
+    az dt twin update -n $adtname --twin-id "Deviveid1" --json-patch '[{"op":"add", "path":"/Deviceid", "value": "'"Deviveid1"'"}]'
 
 
 # az eventgrid topic create -g $rgname --name $egname -l $location
