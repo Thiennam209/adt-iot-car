@@ -33,8 +33,8 @@ deviceid=$(az dt model create -n $adtname --models ./adt-iot-car/models/device.j
 
 # echo 'instantiate ADT Instances'
     echo "Create Device Deviceid1"
-    az dt twin create -n $adtname --dtmi $deviveid --twin-id "Devideid1"
-    az dt twin update -n $adtname --twin-id "Devideid1" --json-patch '[{"op":"add", "path":"/DeviceId", "value": "'"Deviceid1"'"}]'
+    az dt twin create -n $adtname --dtmi $deviveid --twin-id "Deviceid1"
+    az dt twin update -n $adtname --twin-id "Deviceid1" --json-patch '[{"op":"add", "path":"/DeviceId", "value": "'"Deviceid1"'"}]'
 
 
 # az eventgrid topic create -g $rgname --name $egname -l $location
