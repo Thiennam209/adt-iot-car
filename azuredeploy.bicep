@@ -191,7 +191,7 @@ resource appInsights 'Microsoft.Insights/components@2015-05-01' = {
 resource ingestfunction 'Microsoft.Web/sites/extensions@2015-08-01' = {
   name: '${funcApp.name}/MSDeploy'
   properties: {
-packageUri: 'https://github.com/Thiennam209/adt-iot-car.git'
+packageUri: 'https://github.com/Thiennam209/adt-iot-car/raw/main/ARM-Template/functions/zipfiles/blade-functions.zip'
 dbType: 'None'
     connectionString: ''
   }
@@ -341,7 +341,7 @@ resource PostDeploymentscript 'Microsoft.Resources/deploymentScripts@2020-10-01'
     forceUpdateTag: utcValue
     azCliVersion: '2.15.0'
     arguments: '${iot.name} ${adt.name} ${resourceGroup().name} ${location} ${eventGridChangeLogTopic.name} ${eventGridChangeLogTopic.id} ${funcApp.id} ${storage.name} ${fileContainerName}'
-    primaryScriptUri: 'https://github.com/Thiennam209/adt-iot-car.git'
+    primaryScriptUri: 'https://raw.githubusercontent.com/Thiennam209/adt-iot-car/main/ARM-Template/postdeploy.sh'
     supportingScriptUris: []
     timeout: 'PT30M'
     cleanupPreference: 'OnExpiration'
