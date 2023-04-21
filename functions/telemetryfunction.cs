@@ -41,7 +41,7 @@ namespace My.Function
                     JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                     string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
                     var ID = alertMessage["body"]["DeviceId"];
-                    var alert = alertMessage["body"]["Alert"];
+                    //var alert = alertMessage["body"]["Alert"];
                     log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
                     //log.LogInformation($"Device:{deviceId} Alert Status is:{alert}");
 
