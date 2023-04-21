@@ -32,8 +32,8 @@ git clone https://github.com/Thiennam209/adt-iot-car.git
 deviveid=$(az dt model create -n $adtname --models ./adt-iot-car/models/devive.json --query [].id -o tsv)
 
 # echo 'instantiate ADT Instances'
-    echo "Create Devive Deviveid1"
-    az dt twin create -n $adtname --dtmi $deviveid --twin-id "Deviveid1"
+    echo "Create Device Deviceid1"
+    az dt twin create -n $adtname --dtmi $deviveid --twin-id "DeviveId1"
     az dt twin update -n $adtname --twin-id "Deviveid1" --json-patch '[{"op":"add", "path":"/Deviceid", "value": "'"Deviveid1"'"}]'
 
 
