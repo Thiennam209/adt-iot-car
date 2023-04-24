@@ -81,8 +81,7 @@ namespace SignalRFunctions
                     //log.LogInformation($"setting alert to: {alert}");
                     var property = new Dictionary<object, object>
                     {
-                        {"deviceid", deviceid },
-                        //{"Alert", alert }
+                        {"deviceid", deviceid }
                     };
                     return signalRMessages.AddAsync(
                         new SignalRMessage
