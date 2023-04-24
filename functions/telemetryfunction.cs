@@ -48,7 +48,7 @@ namespace My.Function
 
                     var updateProperty = new JsonPatchDocument();
                     //updateProperty.AppendReplace("/Alert", alert.Value<bool>());
-                    updateProperty.AppendReplace("/ieviceid", ID.Value<string>());
+                    updateProperty.AppendReplace("/deviceid", ID.Value<string>());
                     log.LogInformation(updateProperty.ToString());
                     try
                     {

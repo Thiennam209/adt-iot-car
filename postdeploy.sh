@@ -29,7 +29,7 @@ az extension add --name azure-iot -y
 git clone https://github.com/Thiennam209/adt-iot-car.git
 
 # echo 'input model'
-deviceid=$(az dt model create -n $adtname --models ./models/device.json --query [].id -o tsv)
+deviceid=$(az dt model create -n $adtname --models ./adt-iot-car/models/device.json --query [].id -o tsv)
 
 # echo 'instantiate ADT Instances'
     echo "Create Device deviceid1"
@@ -45,4 +45,4 @@ az dt route create --dt-name $adtname --endpoint-name "$egname-ep" --route-name 
 az eventgrid event-subscription create --name "$egname-broadcast-sub" --source-resource-id $egid --endpoint "$funcappid/functions/broadcast" --endpoint-type azurefunction
 
 # Retrieve and Upload models to blob storage
-az storage blob upload-batch --account-name $storagename -d $containername -s "./assets"
+az storage blob upload-batch --account-name $storagename -d $containername -s "./adt-iot-car/assets"
