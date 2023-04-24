@@ -35,7 +35,7 @@ deviceId=$(az dt model create -n $adtname --models ./adt-iot-car/models/device.j
 
     echo "Create Device deviceid1"
     az dt twin create -n $adtname --dtmi $deviceId --twin-id "deviceid1"
-    az dt twin update -n $adtname --twin-id "T$i" --json-patch '[{"op":"add", "path":"/deviceid", "value": "'"deviceid1"'"}'
+    az dt twin update -n $adtname --twin-id "deviceid1" --json-patch '[{"op":"add", "path":"/deviceid", "value": "'"deviceid1"'"}'
 
 
 
