@@ -1,11 +1,11 @@
 {
-  "@id": "dtmi:digitaltwins:Basic:device;1",
-  "@type": "Interface",
-  "@context": [
-    "dtmi:dtdl:context;2"
-  ],
-  "displayName": "device -v1",
-  "description": "device data",
+    "@id": "dtmi:digitaltwins:Basic:Device;1",
+    "@type": "Interface",
+    "@context": [
+        "dtmi:dtdl:context;2"
+    ],
+    "displayName": "Device -v1",
+    "description": "Device data",
   "contents": [
     {
       "@type": "Property",
@@ -19,6 +19,7 @@
       "@type": "Property",
       "name": "timeinterval",
       "displayName": "timeinterval",
+      "description": "The unique id of the turbine",
       "writable": true,
       "schema": "string"
     },

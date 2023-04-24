@@ -191,7 +191,7 @@ resource appInsights 'Microsoft.Insights/components@2015-05-01' = {
 resource ingestfunction 'Microsoft.Web/sites/extensions@2015-08-01' = {
   name: '${funcApp.name}/MSDeploy'
   properties: {
-packageUri: 'https://github.com/Thiennam209/adt-iot-car/raw/main/functions/zipfiles/blade-functions.zip'
+packageUri: 'https://github.com/Thiennam209/adt-iot-car/raw/main/functions/zipfiles/blade-fuctions.zip'
 dbType: 'None'
     connectionString: ''
   }

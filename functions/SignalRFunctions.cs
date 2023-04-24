@@ -15,20 +15,20 @@ namespace SignalRFunctions
 {
     public static class SignalRFunctions
     {
-        public static string deviceid;
-        public static string timeinterval;
-        public static double humidity;
-        public static double temperature;
-        public static double pressure;
-        public static double magnetometerX;
-        public static double magnetometerY;
-        public static double magnetometerZ;
-        public static double accelerometerX;
-        public static double accelerometerY;
-        public static double accelerometerZ;
-        public static double gyroscopeX;
-        public static double gyroscopeY;
-        public static double gyroscopeZ;
+        public static string deviceid;
+        public static string timeinterval;
+        public static double humidity;
+        public static double temperature;
+        public static double pressure;
+        public static double magnetometerX;
+        public static double magnetometerY;
+        public static double magnetometerZ;
+        public static double accelerometerX;
+        public static double accelerometerY;
+        public static double accelerometerZ;
+        public static double gyroscopeX;
+        public static double gyroscopeY;
+        public static double gyroscopeZ;
 
         [FunctionName("negotiate")]
         public static SignalRConnectionInfo GetSignalRInfo(
@@ -67,7 +67,7 @@ namespace SignalRFunctions
                 try
                 {
                     deviceid = eventGridEvent.Subject;
-                   
+                    
                     var data = eventGridData.SelectToken("data");
                     var patch = data.SelectToken("patch");
                     //foreach(JToken token in patch)
@@ -77,10 +77,11 @@ namespace SignalRFunctions
                     //        alert = token["value"].ToObject<bool>();
                     //    }
                     //}
+
                     //log.LogInformation($"setting alert to: {alert}");
                     var property = new Dictionary<object, object>
                     {
-                        {"deviceid", deviceid }
+                        {"deviceid", deviceid },
                         //{"Alert", alert }
                     };
                     return signalRMessages.AddAsync(
@@ -96,6 +97,7 @@ namespace SignalRFunctions
                     return null;
                 }
             }
-            }
+
+        }
     }
 }
