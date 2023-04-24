@@ -15,20 +15,20 @@ namespace SignalRFunctions
 {
     public static class SignalRFunctions
     {
-        public static string DeviceId;
-        public static string TimeInterval;
-        public static double Humidity;
-        public static double Temperature;
-        public static double Pressure;
-        public static double MagnetometerX;
-        public static double MagnetometerY;
-        public static double MagnetometerZ;
-        public static double AccelerometerX;
-        public static double AccelerometerY;
-        public static double AccelerometerZ;
-        public static double GyroscopeX;
-        public static double GyroscopeY;
-        public static double GyroscopeZ;
+        public static string deviceid;
+        public static string timeinterval;
+        public static double humidity;
+        public static double temperature;
+        public static double pressure;
+        public static double magnetometerX;
+        public static double magnetometerY;
+        public static double magnetometerZ;
+        public static double accelerometerX;
+        public static double accelerometerY;
+        public static double accelerometerZ;
+        public static double gyroscopeX;
+        public static double gyroscopeY;
+        public static double gyroscopeZ;
 
         [FunctionName("negotiate")]
         public static SignalRConnectionInfo GetSignalRInfo(
@@ -66,7 +66,7 @@ namespace SignalRFunctions
             {
                 try
                 {
-                    DeviceId = eventGridEvent.Subject;
+                    deviceid = eventGridEvent.Subject;
                    
                     var data = eventGridData.SelectToken("data");
                     var patch = data.SelectToken("patch");
@@ -80,7 +80,7 @@ namespace SignalRFunctions
                     //log.LogInformation($"setting alert to: {alert}");
                     var property = new Dictionary<object, object>
                     {
-                        {"DeviceId", DeviceId }
+                        {"deviceid", deviceid }
                         //{"Alert", alert }
                     };
                     return signalRMessages.AddAsync(

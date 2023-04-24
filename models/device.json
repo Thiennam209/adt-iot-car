@@ -1,108 +1,108 @@
 {
-  "@id": "dtmi:digitaltwins:Basic:Device;1",
+  "@id": "dtmi:digitaltwins:Basic:device;1",
   "@type": "Interface",
   "@context": [
     "dtmi:dtdl:context;2"
   ],
-  "displayName": "Device -v1",
-  "description": "Device data",
+  "displayName": "device -v1",
+  "description": "device data",
   "contents": [
     {
       "@type": "Property",
-      "name": "DeviceId",
-      "displayName": "DeviceId",
+      "name": "deviceid",
+      "displayName": "deviceid",
       "description": "The unique id of the turbine",
       "writable": true,
       "schema": "string"
     },
     {
       "@type": "Property",
-      "name": "TimeInterval",
-      "displayName": "TimeInterval",
+      "name": "timeinterval",
+      "displayName": "timeinterval",
       "writable": true,
       "schema": "string"
     },
     {
       "@type": "Property",
-      "name": "Humidity",
-      "displayName": "Humidity",
+      "name": "humidity",
+      "displayName": "humidity",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "Temperature",
-      "displayName": "Temperature",
+      "name": "temperature",
+      "displayName": "temperature",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "Pressure",
-      "displayName": "Pressure",
+      "name": "pressure",
+      "displayName": "pressure",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "MagnetometerX",
-      "displayName": "MagnetometerX",
+      "name": "magnetometerX",
+      "displayName": "magnetometerX",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "MagnetometerY",
-      "displayName": "MagnetometerY",
+      "name": "magnetometerY",
+      "displayName": "magnetometerY",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "MagnetometerZ",
-      "displayName": "MagnetometerZ",
+      "name": "magnetometerZ",
+      "displayName": "magnetometerZ",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "AccelerometerX",
-      "displayName": "AccelerometerX",
+      "name": "accelerometerX",
+      "displayName": "accelerometerX",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "AccelerometerY",
-      "displayName": "AccelerometerY",
+      "name": "accelerometerY",
+      "displayName": "accelerometerY",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "AccelerometerZ",
-      "displayName": "AccelerometerZ",
+      "name": "accelerometerZ",
+      "displayName": "accelerometerZ",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "GyroscopeX",
-      "displayName": "GyroscopeX",
+      "name": "gyroscopeX",
+      "displayName": "gyroscopeX",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "GyroscopeY",
-      "displayName": "GyroscopeY",
+      "name": "gyroscopeY",
+      "displayName": "gyroscopeY",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "GyroscopeZ",
-      "displayName": "GyroscopeZ",
+      "name": "gyroscopeZ",
+      "displayName": "gyroscopeZ",
       "writable": true,
       "schema": "double"
     }
