@@ -36,35 +36,20 @@ var ADTRoleDefinitionAppRegName = appRegObjectId
 
 // create iot hub
 resource iot 'microsoft.devices/iotHubs@2020-03-01' = {
-
   name: iotHubName
-
   location: location
-
   sku: {
-
     name: 'S1'
-
     capacity: 1
-
   }
-
   properties: {
-
     eventHubEndpoints: {
-
       events: {
-
         retentionTimeInDays: 1
-
         partitionCount: 4
-
       }
-
     }
-
   }
-
 }
 
 //create storage account (used by the azure function app)
@@ -128,21 +113,13 @@ resource signalr 'Microsoft.SignalRService/signalR@2020-07-01-preview' = {
 
 // create App Plan - "server farm"
 resource appserver 'Microsoft.Web/serverfarms@2019-08-01' = {
-
   name: serverFarmName
-
   location: location
-
   kind: 'functionapp'
-
   sku: {
-
     tier: 'Basic'
-
     name: 'B1'
-
   }
-
 }
 // create Function app for hosting the IoTHub ingress and SignalR egress
 resource funcApp 'Microsoft.Web/sites@2019-08-01' = {
