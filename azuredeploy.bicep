@@ -36,20 +36,20 @@ var ADTRoleDefinitionAppRegName = appRegObjectId
 
 // create iot hub
 resource iot 'microsoft.devices/iotHubs@2020-03-01' = {
-  name: iotHubName
-  location: location
-  sku: {
-    name: 'S1'
-    capacity: 1
-  }
-  properties: {
-    eventHubEndpoints: {
-      events: {
-        retentionTimeInDays: 1
-        partitionCount: 4
-      }
-    }
-  }
+  name: iotHubName
+  location: location
+  sku: {
+    name: 'F1'
+    capacity: 1
+  }
+  properties: {
+    eventHubEndpoints: {
+      events: {
+        retentionTimeInDays: 1
+        partitionCount: 2
+      }
+    }
+  }
 }
 
 //create storage account (used by the azure function app)
@@ -113,13 +113,13 @@ resource signalr 'Microsoft.SignalRService/signalR@2020-07-01-preview' = {
 
 // create App Plan - "server farm"
 resource appserver 'Microsoft.Web/serverfarms@2019-08-01' = {
-  name: serverFarmName
-  location: location
-  kind: 'functionapp'
-  sku: {
-    tier: 'Basic'
-    name: 'B1'
-  }
+  name: serverFarmName
+  location: location
+  kind: 'functionapp'
+  sku: {
+    tier: 'Basic'
+    name: 'B1'
+  }
 }
 // create Function app for hosting the IoTHub ingress and SignalR egress
 resource funcApp 'Microsoft.Web/sites@2019-08-01' = {
@@ -191,7 +191,7 @@ resource appInsights 'Microsoft.Insights/components@2015-05-01' = {
 resource ingestfunction 'Microsoft.Web/sites/extensions@2015-08-01' = {
   name: '${funcApp.name}/MSDeploy'
   properties: {
-packageUri: 'https://github.com/Thiennam209/adt-iot-car/raw/main/functions/zipfiles/blade-fuctions.zip'
+packageUri: 'https://github.com/Thiennam209/adt-iot-car/raw/main/functions/zipfiles/blade-functions.zip'
 dbType: 'None'
     connectionString: ''
   }
