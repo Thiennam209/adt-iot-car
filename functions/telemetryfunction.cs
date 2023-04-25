@@ -83,10 +83,10 @@ namespace My.Function
                 //    }
                 //}
                 //else
-                //if (eventGridEvent != null && eventGridEvent.Data != null)
-                //{
+                if (eventGridEvent != null && eventGridEvent.Data != null)
+                {
 
-                JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+                    JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                 string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                 var ID = deviceMessage["body"]["deviceid"];
                 var timeinterval = deviceMessage["body"]["timeinterval"];
@@ -146,7 +146,7 @@ namespace My.Function
                 {
                     log.LogInformation(e.Message);
                 }
-                //}
+                }
             }
             catch (Exception e)
             {
