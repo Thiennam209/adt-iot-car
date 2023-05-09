@@ -38,18 +38,13 @@ namespace My.Function
                 log.LogInformation($"ADT service client connection created.");
                 var _deviceid = eventGridEvent.Data.ToString().Contains("deviceid");
                 var _humidity = eventGridEvent.Data.ToString().Contains("humidity");
-                log.LogInformation($"Device ::: {_deviceid}");
-                log.LogInformation($"Humidity ::: {_humidity}");
 
-                if (eventGridEvent.Data.ToString().Contains("humidity"))
+                if (_deviceid || _humidity)
                 {
                    JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
-
-                    log.LogInformation($"alertMessage ::: {alertMessage}");
-
                     string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
                    var ID = alertMessage["body"]["deviceid"];
-                   var humidity = alertMessage["body"]["humidity"];
+                    var humidity = alertMessage["body"]["humidity"];
                     //var timeinterval = alertMessage["body"]["timeinterval"];
                     //var temperature = alertMessage["body"]["temperature"];
                     //var pressure = alertMessage["body"]["pressure"];
@@ -63,7 +58,7 @@ namespace My.Function
                     //var gyroscopeY = alertMessage["body"]["gyroscopeY"];
                     //var gyroscopeZ = alertMessage["body"]["gyroscopeZ"];
                     log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
-                    log.LogInformation($"Device:{deviceId} Device Id is:{humidity}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{humidity}");
                     //log.LogInformation($"Device:{deviceId} Device Id is:{timeinterval}");
                     //log.LogInformation($"Device:{deviceId} Device Id is:{temperature}");
                     //log.LogInformation($"Device:{deviceId} Device Id is:{pressure}");
@@ -79,7 +74,7 @@ namespace My.Function
 
                     var updateProperty = new JsonPatchDocument();
                     updateProperty.AppendReplace("/deviceid", ID.Value<string>());
-                    updateProperty.AppendReplace("/humidity", humidity.Value<double>());
+                    updateProperty.AppendReplace("/humidity", humidity.Value<string>());
                    log.LogInformation(updateProperty.ToString());
                    try
                    {
@@ -146,6 +141,7 @@ namespace My.Function
                         // ["gyroscopeZ"] = gyroscopeZ
                     };
                     updateProperty.AppendAdd("/deviceid", ID.Value<string>());
+                    updateProperty.AppendAdd("/humidity", ID.Value<string>());
 
                     log.LogInformation(updateProperty.ToString());
                     try
