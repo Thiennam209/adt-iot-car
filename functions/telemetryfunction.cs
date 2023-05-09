@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Collections.Generic;
+using Microsoft.Azure.SignalR.Protocol;
 
 namespace My.Function
 {
@@ -42,9 +43,10 @@ namespace My.Function
                 if (_deviceid || _humidity)
                 {
                    JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+                    log.LogInformation($"alertMessage ::: {alertMessage}");
                     string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
                    var ID = alertMessage["body"]["deviceid"];
-                    var humidity = alertMessage["body"]["humidity"];
+                    //var humidity = alertMessage["body"]["humidity"];
                     //var timeinterval = alertMessage["body"]["timeinterval"];
                     //var temperature = alertMessage["body"]["temperature"];
                     //var pressure = alertMessage["body"]["pressure"];
@@ -74,7 +76,7 @@ namespace My.Function
 
                     var updateProperty = new JsonPatchDocument();
                     updateProperty.AppendReplace("/deviceid", ID.Value<string>());
-                    updateProperty.AppendReplace("/humidity", humidity.Value<string>());
+                    //updateProperty.AppendReplace("/humidity", humidity.Value<string>());
                    log.LogInformation(updateProperty.ToString());
                    try
                    {
@@ -94,7 +96,7 @@ namespace My.Function
 
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                     var ID = deviceMessage["body"]["deviceid"];
-                    var humidity = deviceMessage["body"]["humidity"];
+                    //var humidity = deviceMessage["body"]["humidity"];
                     // var timeinterval = deviceMessage["body"]["timeinterval"];
                     // var temperature = deviceMessage["body"]["temperature"];
                     // var pressure = deviceMessage["body"]["pressure"];
@@ -109,7 +111,7 @@ namespace My.Function
                     // var gyroscopeZ = deviceMessage["body"]["gyroscopeZ"];
 
                     log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{humidity}");
+                    //log.LogInformation($"Device:{deviceId} humidity is:{humidity}");
                     // log.LogInformation($"Device:{deviceId} Time interval is:{timeinterval}");
                     // log.LogInformation($"Device:{deviceId} temperature is:{temperature}");
                     // log.LogInformation($"Device:{deviceId} pressure is:{pressure}");
@@ -126,7 +128,7 @@ namespace My.Function
                     var turbineTelemetry = new Dictionary<string, Object>()
                     {
                         ["deviceid"] = ID,
-                        ["humidity"] = humidity,
+                        //["humidity"] = humidity,
                         // ["timeinterval"] = timeinterval,
                         // ["temperature"] = temperature,
                         // ["pressure"] = pressure,
@@ -141,7 +143,7 @@ namespace My.Function
                         // ["gyroscopeZ"] = gyroscopeZ
                     };
                     updateProperty.AppendAdd("/deviceid", ID.Value<string>());
-                    updateProperty.AppendAdd("/humidity", ID.Value<string>());
+                    //updateProperty.AppendAdd("/humidity", ID.Value<string>());
 
                     log.LogInformation(updateProperty.ToString());
                     try
