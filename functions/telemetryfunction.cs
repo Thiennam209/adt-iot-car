@@ -38,7 +38,10 @@ namespace My.Function
                 log.LogInformation($"ADT service client connection created.");
                 var _deviceid = eventGridEvent.Data.ToString().Contains("deviceid");
                 var _humidity = eventGridEvent.Data.ToString().Contains("humidity");
-                if (_deviceid || _humidity)
+                Console.WriteLine("Thiet bi:::" + _deviceid);
+                Console.WriteLine("Ap suat lop:::" + _humidity);
+
+                if (eventGridEvent.Data.ToString().Contains("deviceid") && eventGridEvent.Data.ToString().Contains("humidity"))
                 {
                    JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                    string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
