@@ -36,7 +36,7 @@ namespace My.Function
                     new Uri(adtServiceUrl), credentials, new DigitalTwinsClientOptions
                     { Transport = new HttpClientTransport(httpClient) });
                 log.LogInformation($"ADT service client connection created.");
-                if (eventGridEvent.Data.ToString().Contains("Alert"))
+                if (eventGridEvent.Data.ToString().Contains("deviceid"))
                 {
                    JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                    string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
