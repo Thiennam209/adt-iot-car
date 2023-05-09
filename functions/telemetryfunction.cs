@@ -46,7 +46,7 @@ namespace My.Function
                     log.LogInformation($"alertMessage ::: {alertMessage}");
                     string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
                    var ID = alertMessage["body"]["deviceid"];
-                    //var humidity = alertMessage["body"]["humidity"];
+                    var humidity = alertMessage["body"]["humidity"];
                     //var timeinterval = alertMessage["body"]["timeinterval"];
                     //var temperature = alertMessage["body"]["temperature"];
                     //var pressure = alertMessage["body"]["pressure"];
@@ -76,8 +76,8 @@ namespace My.Function
 
                     var updateProperty = new JsonPatchDocument();
                     updateProperty.AppendReplace("/deviceid", ID.Value<string>());
-                    //updateProperty.AppendReplace("/humidity", humidity.Value<string>());
-                   log.LogInformation(updateProperty.ToString());
+                    updateProperty.AppendReplace("/humidity", humidity.Value<string>());
+                    log.LogInformation(updateProperty.ToString());
                    try
                    {
                        await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
@@ -96,7 +96,7 @@ namespace My.Function
 
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                     var ID = deviceMessage["body"]["deviceid"];
-                    //var humidity = deviceMessage["body"]["humidity"];
+                    var humidity = deviceMessage["body"]["humidity"];
                     // var timeinterval = deviceMessage["body"]["timeinterval"];
                     // var temperature = deviceMessage["body"]["temperature"];
                     // var pressure = deviceMessage["body"]["pressure"];
@@ -128,7 +128,7 @@ namespace My.Function
                     var turbineTelemetry = new Dictionary<string, Object>()
                     {
                         ["deviceid"] = ID,
-                        //["humidity"] = humidity,
+                        ["humidity"] = humidity,
                         // ["timeinterval"] = timeinterval,
                         // ["temperature"] = temperature,
                         // ["pressure"] = pressure,
@@ -143,7 +143,7 @@ namespace My.Function
                         // ["gyroscopeZ"] = gyroscopeZ
                     };
                     updateProperty.AppendAdd("/deviceid", ID.Value<string>());
-                    //updateProperty.AppendAdd("/humidity", ID.Value<string>());
+                    updateProperty.AppendAdd("/humidity", humidity.Value<string>());
 
                     log.LogInformation(updateProperty.ToString());
                     try
