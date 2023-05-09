@@ -38,13 +38,16 @@ namespace My.Function
                 log.LogInformation($"ADT service client connection created.");
                 var _deviceid = eventGridEvent.Data.ToString().Contains("deviceid");
                 var _humidity = eventGridEvent.Data.ToString().Contains("humidity");
-                Console.WriteLine("Thiet bi:::" + _deviceid);
-                Console.WriteLine("Ap suat lop:::" + _humidity);
+                log.LogInformation($"Device ::: {_deviceid}");
+                log.LogInformation($"Humidity ::: {_humidity}");
 
-                if (eventGridEvent.Data.ToString().Contains("deviceid") && eventGridEvent.Data.ToString().Contains("humidity"))
+                if (eventGridEvent.Data.ToString().Contains("humidity"))
                 {
                    JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
-                   string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
+
+                    log.LogInformation($"alertMessage ::: {alertMessage}");
+
+                    string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
                    var ID = alertMessage["body"]["deviceid"];
                    var humidity = alertMessage["body"]["humidity"];
                     //var timeinterval = alertMessage["body"]["timeinterval"];
@@ -92,6 +95,8 @@ namespace My.Function
                 {
 
                     JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+                    log.LogInformation($"deviceMessage ::: {deviceMessage}");
+
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                     var ID = deviceMessage["body"]["deviceid"];
                     var humidity = deviceMessage["body"]["humidity"];
