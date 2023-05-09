@@ -39,14 +39,14 @@ resource iot 'microsoft.devices/iotHubs@2020-03-01' = {
   name: iotHubName
   location: location
   sku: {
-    name: 'F1'
+    name: 'S1'
     capacity: 1
   }
   properties: {
     eventHubEndpoints: {
       events: {
         retentionTimeInDays: 1
-        partitionCount: 2
+        partitionCount: 4
       }
     }
   }
