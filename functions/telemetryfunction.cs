@@ -36,15 +36,63 @@ namespace My.Function
                     new Uri(adtServiceUrl), credentials, new DigitalTwinsClientOptions
                     { Transport = new HttpClientTransport(httpClient) });
                 log.LogInformation($"ADT service client connection created.");
+                var _deviceid = eventGridEvent.Data.ToString().Contains("deviceid");
+                var _humidity = eventGridEvent.Data.ToString().Contains("humidity");
+                if (_deviceid || _humidity)
+                {
+                   JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+                   string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
+                   var ID = alertMessage["body"]["deviceid"];
+                   var humidity = alertMessage["body"]["humidity"];
+                    //var timeinterval = alertMessage["body"]["timeinterval"];
+                    //var temperature = alertMessage["body"]["temperature"];
+                    //var pressure = alertMessage["body"]["pressure"];
+                    //var magnetometerX = alertMessage["body"]["magnetometerX"];
+                    //var magnetometerY = alertMessage["body"]["magnetometerY"];
+                    //var magnetometerZ = alertMessage["body"]["magnetometerZ"];
+                    //var accelerometerX = alertMessage["body"]["accelerometerX"];
+                    //var accelerometerY = alertMessage["body"]["accelerometerY"];
+                    //var accelerometerZ = alertMessage["body"]["accelerometerZ"];
+                    //var gyroscopeX = alertMessage["body"]["gyroscopeX"];
+                    //var gyroscopeY = alertMessage["body"]["gyroscopeY"];
+                    //var gyroscopeZ = alertMessage["body"]["gyroscopeZ"];
+                    log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
+                    log.LogInformation($"Device:{deviceId} Device Id is:{humidity}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{timeinterval}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{temperature}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{pressure}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerX}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerY}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerZ}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerX}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerY}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerZ}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeX}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeY}");
+                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeZ}");
 
+                    var updateProperty = new JsonPatchDocument();
+                    updateProperty.AppendReplace("/deviceid", ID.Value<string>());
+                    updateProperty.AppendReplace("/humidity", humidity.Value<double>());
+                   log.LogInformation(updateProperty.ToString());
+                   try
+                   {
+                       await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
+                   }
+                   catch (Exception e)
+                   {
+                       log.LogInformation(e.Message);
+                   }
+                }
+                else
                 if (eventGridEvent != null && eventGridEvent.Data != null)
                 {
 
                     JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                     var ID = deviceMessage["body"]["deviceid"];
+                    var humidity = deviceMessage["body"]["humidity"];
                     // var timeinterval = deviceMessage["body"]["timeinterval"];
-                    // var humidity = deviceMessage["body"]["humidity"];
                     // var temperature = deviceMessage["body"]["temperature"];
                     // var pressure = deviceMessage["body"]["pressure"];
                     // var magnetometerX = deviceMessage["body"]["magnetometerX"];
@@ -57,9 +105,9 @@ namespace My.Function
                     // var gyroscopeY = deviceMessage["body"]["gyroscopeY"];
                     // var gyroscopeZ = deviceMessage["body"]["gyroscopeZ"];
 
-                    // log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
+                    log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{humidity}");
                     // log.LogInformation($"Device:{deviceId} Time interval is:{timeinterval}");
-                    // log.LogInformation($"Device:{deviceId} humidity is:{humidity}");
                     // log.LogInformation($"Device:{deviceId} temperature is:{temperature}");
                     // log.LogInformation($"Device:{deviceId} pressure is:{pressure}");
                     // log.LogInformation($"Device:{deviceId} magnetometerX is:{magnetometerX}");
@@ -75,8 +123,8 @@ namespace My.Function
                     var turbineTelemetry = new Dictionary<string, Object>()
                     {
                         ["deviceid"] = ID,
+                        ["humidity"] = humidity,
                         // ["timeinterval"] = timeinterval,
-                        // ["humidity"] = humidity,
                         // ["temperature"] = temperature,
                         // ["pressure"] = pressure,
                         // ["magnetometerX"] = magnetometerX,
