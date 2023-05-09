@@ -36,53 +36,7 @@ namespace My.Function
                     new Uri(adtServiceUrl), credentials, new DigitalTwinsClientOptions
                     { Transport = new HttpClientTransport(httpClient) });
                 log.LogInformation($"ADT service client connection created.");
-                if (eventGridEvent.Data.ToString().Contains("deviceid"))
-                {
-                   JObject alertMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
-                   string deviceId = (string)alertMessage["systemProperties"]["iothub-connection-device-id"];
-                   var ID = alertMessage["body"]["deviceid"];
-                   //var timeinterval = alertMessage["body"]["timeinterval"];
-                //    var humidity = alertMessage["body"]["humidity"];
-                    //var temperature = alertMessage["body"]["temperature"];
-                    //var pressure = alertMessage["body"]["pressure"];
-                    //var magnetometerX = alertMessage["body"]["magnetometerX"];
-                    //var magnetometerY = alertMessage["body"]["magnetometerY"];
-                    //var magnetometerZ = alertMessage["body"]["magnetometerZ"];
-                    //var accelerometerX = alertMessage["body"]["accelerometerX"];
-                    //var accelerometerY = alertMessage["body"]["accelerometerY"];
-                    //var accelerometerZ = alertMessage["body"]["accelerometerZ"];
-                    //var gyroscopeX = alertMessage["body"]["gyroscopeX"];
-                    //var gyroscopeY = alertMessage["body"]["gyroscopeY"];
-                    //var gyroscopeZ = alertMessage["body"]["gyroscopeZ"];
-                    log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{timeinterval}");
-                    // log.LogInformation($"Device:{deviceId} Device Id is:{humidity}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{temperature}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{pressure}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerX}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerY}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerZ}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerX}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerY}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerZ}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeX}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeY}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeZ}");
 
-                    var updateProperty = new JsonPatchDocument();
-                   //updateProperty.AppendReplace("/Alert", alert.Value<bool>());
-                   updateProperty.AppendReplace("/deviceid", ID.Value<string>());
-                   log.LogInformation(updateProperty.ToString());
-                   try
-                   {
-                       await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
-                   }
-                   catch (Exception e)
-                   {
-                       log.LogInformation(e.Message);
-                   }
-                }
-                else
                 if (eventGridEvent != null && eventGridEvent.Data != null)
                 {
 
