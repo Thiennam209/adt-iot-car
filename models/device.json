@@ -11,29 +11,21 @@
       "@type": "Property",
       "name": "deviceid",
       "displayName": "deviceid",
-      "description": "The unique id of the turbine",
+      "description": "The unique id of the device",
       "writable": true,
       "schema": "string"
     },
     {
       "@type": "Property",
-      "name": "timeinterval",
-      "displayName": "timeinterval",
-      "description": "The unique id of the turbine",
-      "writable": true,
-      "schema": "string"
-    },
-    {
-      "@type": "Property",
-      "name": "humidity",
-      "displayName": "humidity",
+      "name": "o2s",
+      "displayName": "o2s",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "temperature",
-      "displayName": "temperature",
+      "name": "ats",
+      "displayName": "ats",
       "writable": true,
       "schema": "double"
     },
@@ -42,68 +34,54 @@
       "name": "pressure",
       "displayName": "pressure",
       "writable": true,
-      "schema": "double"
+      "schema": "string"
     },
     {
       "@type": "Property",
-      "name": "magnetometerX",
-      "displayName": "magnetometerX",
+      "name": "cps",
+      "displayName": "cps",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "magnetometerY",
-      "displayName": "magnetometerY",
+      "name": "aps",
+      "displayName": "aps",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "magnetometerZ",
-      "displayName": "magnetometerZ",
+      "name": "sas",
+      "displayName": "sas",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "accelerometerX",
-      "displayName": "accelerometerX",
+      "name": "vss",
+      "displayName": "vss",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "accelerometerY",
-      "displayName": "accelerometerY",
+      "name": "iat",
+      "displayName": "iat",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "accelerometerZ",
-      "displayName": "accelerometerZ",
+      "name": "maf",
+      "displayName": "maf",
       "writable": true,
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "gyroscopeX",
-      "displayName": "gyroscopeX",
-      "writable": true,
-      "schema": "double"
-    },
-    {
-      "@type": "Property",
-      "name": "gyroscopeY",
-      "displayName": "gyroscopeY",
-      "writable": true,
-      "schema": "double"
-    },
-    {
-      "@type": "Property",
-      "name": "gyroscopeZ",
-      "displayName": "gyroscopeZ",
+      "name": "ect",
+      "displayName": "ect",
       "writable": true,
       "schema": "double"
     }

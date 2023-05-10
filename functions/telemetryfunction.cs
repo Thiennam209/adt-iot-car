@@ -41,46 +41,51 @@ namespace My.Function
                     log.LogInformation($"alertMessage ::: {deviceMessage}");
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                     var ID = deviceMessage["body"]["deviceid"];
-                    var humidity = deviceMessage["body"]["humidity"];
-                    //var timeinterval = alertMessage["body"]["timeinterval"];
-                    //var temperature = alertMessage["body"]["temperature"];
-                    //var pressure = alertMessage["body"]["pressure"];
-                    //var magnetometerX = alertMessage["body"]["magnetometerX"];
-                    //var magnetometerY = alertMessage["body"]["magnetometerY"];
-                    //var magnetometerZ = alertMessage["body"]["magnetometerZ"];
-                    //var accelerometerX = alertMessage["body"]["accelerometerX"];
-                    //var accelerometerY = alertMessage["body"]["accelerometerY"];
-                    //var accelerometerZ = alertMessage["body"]["accelerometerZ"];
-                    //var gyroscopeX = alertMessage["body"]["gyroscopeX"];
-                    //var gyroscopeY = alertMessage["body"]["gyroscopeY"];
-                    //var gyroscopeZ = alertMessage["body"]["gyroscopeZ"];
+                    var o2s = deviceMessage["body"]["o2s"];
+                    var ats = deviceMessage["body"]["ats"];
+                    var pressure = deviceMessage["body"]["pressure"];
+                    var cps = deviceMessage["body"]["cps"];
+                    var aps = deviceMessage["body"]["aps"];
+                    var sas = deviceMessage["body"]["sas"];
+                    var vss = deviceMessage["body"]["vss"];
+                    var iat = deviceMessage["body"]["iat"];
+                    var maf = deviceMessage["body"]["maf"];
+                    var ect = deviceMessage["body"]["ect"];
+                
                     log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{humidity}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{timeinterval}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{temperature}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{pressure}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerX}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerY}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{magnetometerZ}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerX}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerY}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{accelerometerZ}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeX}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeY}");
-                    //log.LogInformation($"Device:{deviceId} Device Id is:{gyroscopeZ}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{o2s}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{ats}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{pressure}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{cps}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{aps}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{sas}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{vss}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{iat}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{maf}");
+                    log.LogInformation($"Device:{deviceId} humidity is:{ect}");
 
-                var updateProperty = new JsonPatchDocument();
+
+                    var updateProperty = new JsonPatchDocument();
                     updateProperty.AppendReplace("/deviceid", ID.Value<string>());
-                    updateProperty.AppendReplace("/humidity", humidity.Value<double>());
+                    updateProperty.AppendReplace("/o2s", o2s.Value<double>());
+                    updateProperty.AppendReplace("/ats", ats.Value<double>());
+                    updateProperty.AppendReplace("/pressure", pressure.Value<string>());
+                    updateProperty.AppendReplace("/cps", cps.Value<double>());
+                    updateProperty.AppendReplace("/aps", aps.Value<double>());
+                    updateProperty.AppendReplace("/sas", sas.Value<double>());
+                    updateProperty.AppendReplace("/vss", vss.Value<double>());
+                    updateProperty.AppendReplace("/iat", iat.Value<double>());
+                    updateProperty.AppendReplace("/maf", maf.Value<double>());
+                    updateProperty.AppendReplace("/ect", ect.Value<double>());
                     log.LogInformation(updateProperty.ToString());
-                   try
-                   {
-                       await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
-                   }
-                   catch (Exception e)
-                   {
-                       log.LogInformation(e.Message);
-                }
+                    try
+                    {
+                        await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
+                    }
+                    catch (Exception e)
+                    {
+                           log.LogInformation(e.Message);
+                    }
             }
             catch (Exception e)
             {

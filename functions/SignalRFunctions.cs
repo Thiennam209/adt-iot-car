@@ -16,19 +16,16 @@ namespace SignalRFunctions
     public static class SignalRFunctions
     {
         public static string deviceid;
-        public static string timeinterval;
-        public static double humidity;
-        public static double temperature;
-        public static double pressure;
-        public static double magnetometerX;
-        public static double magnetometerY;
-        public static double magnetometerZ;
-        public static double accelerometerX;
-        public static double accelerometerY;
-        public static double accelerometerZ;
-        public static double gyroscopeX;
-        public static double gyroscopeY;
-        public static double gyroscopeZ;
+        public static string o2s;
+        public static double ats;
+        public static string pressure;
+        public static double cps;
+        public static double aps;
+        public static double sas;
+        public static double vss;
+        public static double iat;
+        public static double maf;
+        public static double ect;
 
         [FunctionName("negotiate")]
         public static SignalRConnectionInfo GetSignalRInfo(
@@ -70,15 +67,6 @@ namespace SignalRFunctions
                     
                     var data = eventGridData.SelectToken("data");
                     var patch = data.SelectToken("patch");
-                    //foreach(JToken token in patch)
-                    //{
-                    //    if(token["path"].ToString() == "/Alert")
-                    //    {
-                    //        alert = token["value"].ToObject<bool>();
-                    //    }
-                    //}
-
-                    //log.LogInformation($"setting alert to: {alert}");
                     var property = new Dictionary<object, object>
                     {
                         {"deviceid", deviceid }
