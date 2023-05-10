@@ -39,8 +39,8 @@ namespace My.Function
                 log.LogInformation($"ADT service client connection created.");
                 JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                     log.LogInformation($"alertMessage ::: {deviceMessage}");
-                    string deviceId = "deviceid1";
-                    var ID = deviceId;
+                    string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
+                    var ID = deviceMessage["body"]["deviceid"];
                     var o2s = deviceMessage["body"]["o2s"];
                     var ats = deviceMessage["body"]["ats"];
                     var pressure = deviceMessage["body"]["pressure"];
@@ -66,7 +66,7 @@ namespace My.Function
 
 
                     var updateProperty = new JsonPatchDocument();
-                    updateProperty.AppendReplace("/deviceid", deviceId);
+                    updateProperty.AppendReplace("/deviceid", ID.Value<string>());
                     updateProperty.AppendReplace("/o2s", o2s.Value<double>());
                     updateProperty.AppendReplace("/ats", ats.Value<double>());
                     updateProperty.AppendReplace("/pressure", pressure.Value<string>());
