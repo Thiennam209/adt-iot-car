@@ -16,7 +16,7 @@ namespace SignalRFunctions
     public static class SignalRFunctions
     {
         public static string deviceid;
-        public static string o2s;
+        public static double o2s;
         public static double ats;
         public static string pressure;
         public static double cps;
