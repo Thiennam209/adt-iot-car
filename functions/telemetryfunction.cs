@@ -53,23 +53,23 @@ namespace My.Function
                     var ect = deviceMessage["body"]["ect"];
                 
                     log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{o2s}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{ats}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{pressure}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{cps}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{aps}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{sas}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{vss}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{iat}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{maf}");
-                    log.LogInformation($"Device:{deviceId} humidity is:{ect}");
+                    log.LogInformation($"Device:{deviceId} o2s is:{o2s}");
+                    log.LogInformation($"Device:{deviceId} ats is:{ats}");
+                    log.LogInformation($"Device:{deviceId} pressure is:{pressure}");
+                    log.LogInformation($"Device:{deviceId} cps is:{cps}");
+                    log.LogInformation($"Device:{deviceId} aps is:{aps}");
+                    log.LogInformation($"Device:{deviceId} sas is:{sas}");
+                    log.LogInformation($"Device:{deviceId} vss is:{vss}");
+                    log.LogInformation($"Device:{deviceId} iat is:{iat}");
+                    log.LogInformation($"Device:{deviceId} maf is:{maf}");
+                    log.LogInformation($"Device:{deviceId} ect is:{ect}");
 
 
                     var updateProperty = new JsonPatchDocument();
                     updateProperty.AppendReplace("/deviceid", ID);
                     updateProperty.AppendReplace("/o2s", o2s.Value<double>());
                     updateProperty.AppendReplace("/ats", ats.Value<double>());
-                    updateProperty.AppendReplace("/pressure", pressure.Value<string>());
+                    updateProperty.AppendReplace("/pressure", pressure.Value<double>());
                     updateProperty.AppendReplace("/cps", cps.Value<double>());
                     updateProperty.AppendReplace("/aps", aps.Value<double>());
                     updateProperty.AppendReplace("/sas", sas.Value<double>());

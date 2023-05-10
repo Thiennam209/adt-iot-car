@@ -34,7 +34,7 @@
       "name": "pressure",
       "displayName": "pressure",
       "writable": true,
-      "schema": "string"
+      "schema": "double"
     },
     {
       "@type": "Property",

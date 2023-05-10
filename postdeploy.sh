@@ -36,7 +36,7 @@ deviceId=$(az dt model create -n $adtname --models ./adt-iot-car/models/device.j
     echo "Create Device deviceid1"
     az dt twin create -n $adtname --dtmi $deviceId --twin-id "deviceid1"
     az dt twin update -n $adtname --twin-id "deviceid1" --json-patch '[{"op":"add", "path":"/deviceid", "value": "'"deviceid1"'"}, {"op":"add", "path":"/o2s", "value": 0}, {"op":"add", "path":"/ats", "value": 0}
-    , {"op":"add", "path":"/pressure", "value": "'"low"'"}, {"op":"add", "path":"/cps", "value": 0}, {"op":"add", "path":"/aps", "value": 0}, {"op":"add", "path":"/sas", "value": 0}
+    , {"op":"add", "path":"/pressure", "value": 0}, {"op":"add", "path":"/cps", "value": 0}, {"op":"add", "path":"/aps", "value": 0}, {"op":"add", "path":"/sas", "value": 0}
     , {"op":"add", "path":"/vss", "value": 0}, {"op":"add", "path":"/iat", "value": 0}, {"op":"add", "path":"/maf", "value": 0}, {"op":"add", "path":"/ect", "value": 0}]'
 
 

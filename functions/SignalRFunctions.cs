@@ -18,7 +18,7 @@ namespace SignalRFunctions
         public static string deviceid;
         public static double o2s;
         public static double ats;
-        public static string pressure;
+        public static double pressure;
         public static double cps;
         public static double aps;
         public static double sas;
