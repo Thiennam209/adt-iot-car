@@ -37,7 +37,33 @@ namespace My.Function
                     new Uri(adtServiceUrl), credentials, new DigitalTwinsClientOptions
                     { Transport = new HttpClientTransport(httpClient) });
                 log.LogInformation($"ADT service client connection created.");
-                JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+                if (eventGridEvent.Data.ToString().Contains("pressure"))
+                {
+                    JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
+                    log.LogInformation($"alertMessage ::: {deviceMessage}");
+                    string deviceId = "deviceid1";
+                    var ID = "deviceid1";
+                    var pressure = deviceMessage["body"]["pressure"];
+
+                    log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
+                    log.LogInformation($"Device:{deviceId} pressure is:{pressure}");
+
+
+                    var updateProperty = new JsonPatchDocument();
+                    updateProperty.AppendReplace("/deviceid", ID);
+                    updateProperty.AppendReplace("/pressure", pressure.Value<double>());
+                    log.LogInformation(updateProperty.ToString());
+                    try
+                    {
+                        await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
+                    }
+                    catch (Exception e)
+                    {
+                        log.LogInformation(e.Message);
+                    }
+                } else if (eventGridEvent != null && eventGridEvent.Data != null)
+                {
+                    JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                     log.LogInformation($"alertMessage ::: {deviceMessage}");
                     string deviceId = "deviceid1";
                     var ID = "deviceid1";
@@ -51,7 +77,7 @@ namespace My.Function
                     var iat = deviceMessage["body"]["iat"];
                     var maf = deviceMessage["body"]["maf"];
                     var ect = deviceMessage["body"]["ect"];
-                
+
                     log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
                     log.LogInformation($"Device:{deviceId} o2s is:{o2s}");
                     log.LogInformation($"Device:{deviceId} ats is:{ats}");
@@ -84,8 +110,10 @@ namespace My.Function
                     }
                     catch (Exception e)
                     {
-                           log.LogInformation(e.Message);
+                        log.LogInformation(e.Message);
                     }
+                }
+                    
             }
             catch (Exception e)
             {
