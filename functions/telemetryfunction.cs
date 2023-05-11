@@ -38,7 +38,8 @@ namespace My.Function
                     { Transport = new HttpClientTransport(httpClient) });
                 log.LogInformation($"ADT service client connection created.");
                 log.LogInformation($"eventGridEvent ::: {eventGridEvent}");
-                if (eventGridEvent.Data.ToString().Contains("pressure"))
+                log.LogInformation($"eventGridEvent.Data ::: {eventGridEvent.Data}");
+                if (eventGridEvent.Data.ToString().Contains("pressure") && eventGridEvent == null && eventGridEvent.Data == null)
                 {
                     JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                     log.LogInformation($"alertMessage ::: {deviceMessage}");
@@ -62,7 +63,7 @@ namespace My.Function
                     {
                         log.LogInformation(e.Message);
                     }
-                } else if (eventGridEvent != null && eventGridEvent.Data != null)
+                } else if (eventGridEvent.Data.ToString().Contains("pressure") && eventGridEvent != null && eventGridEvent.Data != null)
                 {
                     JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
                     log.LogInformation($"alertMessage ::: {deviceMessage}");
