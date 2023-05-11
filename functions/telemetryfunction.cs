@@ -37,6 +37,7 @@ namespace My.Function
                     new Uri(adtServiceUrl), credentials, new DigitalTwinsClientOptions
                     { Transport = new HttpClientTransport(httpClient) });
                 log.LogInformation($"ADT service client connection created.");
+                log.LogInformation($"eventGridEvent ::: {eventGridEvent}");
                 if (eventGridEvent.Data.ToString().Contains("pressure"))
                 {
                     JObject deviceMessage = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
