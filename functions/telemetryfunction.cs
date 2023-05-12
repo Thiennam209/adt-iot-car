@@ -49,9 +49,9 @@ namespace My.Function
                 log.LogInformation($"alertMessage ::: {deviceMessage}");
                 string deviceId = "deviceid1";
                 var ID = "deviceid1";
-                var oxys = deviceMessage["body"]["oxys"] != null ? deviceMessage["body"]["oxys"] : 0;
-                var ats = deviceMessage["body"]["ats"] != null ? deviceMessage["body"]["ats"] : 0;
-                var pressure = deviceMessage["body"]["pressure"] != null ? deviceMessage["body"]["pressure"] : 0;
+                var oxys = deviceMessage["body"]["oxys"] != null ? deviceMessage["body"]["oxys"] : 1;
+                var ats = deviceMessage["body"]["ats"] != null ? deviceMessage["body"]["ats"] : 1;
+                var pressure = deviceMessage["body"]["pressure"] != null ? deviceMessage["body"]["pressure"] : 1;
                 var cps = deviceMessage["body"]["cps"] != null ? deviceMessage["body"]["cps"] : 0;
                 var aps = deviceMessage["body"]["aps"] != null ? deviceMessage["body"]["aps"] : 0;
                 var sas = deviceMessage["body"]["sas"] != null ? deviceMessage["body"]["sas"] : 0;
@@ -78,36 +78,21 @@ namespace My.Function
 
 
                 var updateProperty = new JsonPatchDocument();
-                var turbineTelemetry = new Dictionary<string, Object>()
-                {
-                    ["deviceid"] = ID,
-                    ["oxys"] = oxys,
-                    ["ats"] = ats,
-                    ["pressure"] = pressure,
-                    ["cps"] = cps,
-                    ["aps"] = aps,
-                    ["sas"] = sas,
-                    ["vss"] = vss,
-                    ["iat"] = iat,
-                    ["maf"] = maf,
-                    ["ect"] = ect
-                };
                 updateProperty.AppendReplace("/deviceid", ID);
-                //updateProperty.AppendReplace("/oxys", oxys.Value<double>());
-                //updateProperty.AppendReplace("/ats", ats.Value<double>());
-                //updateProperty.AppendReplace("/pressure", pressure.Value<double>());
-                //updateProperty.AppendReplace("/cps", cps.Value<double>());
-                //updateProperty.AppendReplace("/aps", aps.Value<double>());
-                //updateProperty.AppendReplace("/sas", sas.Value<double>());
-                //updateProperty.AppendReplace("/vss", vss.Value<double>());
-                //updateProperty.AppendReplace("/iat", iat.Value<double>());
-                //updateProperty.AppendReplace("/maf", maf.Value<double>());
-                //updateProperty.AppendReplace("/ect", ect.Value<double>());
+                updateProperty.AppendReplace("/oxys", oxys.Value<double>());
+                updateProperty.AppendReplace("/ats", ats.Value<double>());
+                updateProperty.AppendReplace("/pressure", pressure.Value<double>());
+                updateProperty.AppendReplace("/cps", cps.Value<double>());
+                updateProperty.AppendReplace("/aps", aps.Value<double>());
+                updateProperty.AppendReplace("/sas", sas.Value<double>());
+                updateProperty.AppendReplace("/vss", vss.Value<double>());
+                updateProperty.AppendReplace("/iat", iat.Value<double>());
+                updateProperty.AppendReplace("/maf", maf.Value<double>());
+                updateProperty.AppendReplace("/ect", ect.Value<double>());
                 log.LogInformation(updateProperty.ToString());
                 try
                 {
-                    //await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
-                    await client.PublishTelemetryAsync(deviceId, Guid.NewGuid().ToString(), JsonConvert.SerializeObject(turbineTelemetry));
+                    await client.UpdateDigitalTwinAsync(deviceId, updateProperty);
                 }
                 catch (Exception e)
                 {
