@@ -80,7 +80,7 @@ namespace SignalRFunctions
                         {"iat", iat },
                         {"maf", maf },
                         {"ect", ect }
-    };
+                    };
                     return signalRMessages.AddAsync(
                         new SignalRMessage
                         {
