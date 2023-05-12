@@ -17,8 +17,8 @@
     },
     {
       "@type": "Property",
-      "name": "o2s",
-      "displayName": "o2s",
+      "name": "oxys",
+      "displayName": "oxys",
       "writable": true,
       "schema": "double"
     },

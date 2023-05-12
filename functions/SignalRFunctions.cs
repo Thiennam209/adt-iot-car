@@ -16,7 +16,7 @@ namespace SignalRFunctions
     public static class SignalRFunctions
     {
         public static string deviceid;
-        public static double o2s;
+        public static double oxys;
         public static double ats;
         public static double pressure;
         public static double cps;
@@ -45,7 +45,7 @@ namespace SignalRFunctions
             if (eventGridEvent.EventType.Contains("telemetry"))
             {
                 var data = eventGridData.SelectToken("data");
-
+                log.LogInformation($"data :::{data}");
                 var telemetryMessage = new Dictionary<object, object>();
                 foreach (JProperty property in data.Children())
                 {
