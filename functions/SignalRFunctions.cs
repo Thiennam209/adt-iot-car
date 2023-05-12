@@ -45,7 +45,7 @@ namespace SignalRFunctions
             if (eventGridEvent.EventType.Contains("telemetry"))
             {
                 var data = eventGridData.SelectToken("data");
-                log.LogInformation($"data :::{data}");
+
                 var telemetryMessage = new Dictionary<object, object>();
                 foreach (JProperty property in data.Children())
                 {
@@ -69,8 +69,18 @@ namespace SignalRFunctions
                     var patch = data.SelectToken("patch");
                     var property = new Dictionary<object, object>
                     {
-                        {"deviceid", deviceid }
-                    };
+                        {"deviceid", deviceid },
+                        {"oxys", oxys },
+                        {"ats", ats },
+                        {"pressure", pressure },
+                        {"cps", cps },
+                        {"aps", aps },
+                        {"sas", sas },
+                        {"vss", vss },
+                        {"iat", iat },
+                        {"maf", maf },
+                        {"ect", ect }
+    };
                     return signalRMessages.AddAsync(
                         new SignalRMessage
                         {
