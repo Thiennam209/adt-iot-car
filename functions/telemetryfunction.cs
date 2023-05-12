@@ -49,7 +49,7 @@ namespace My.Function
                 log.LogInformation($"alertMessage ::: {deviceMessage}");
                 string deviceId = "deviceid1";
                 var ID = "deviceid1";
-                var o2s = deviceMessage["body"]["oxys"] != null ? deviceMessage["body"]["oxys"] : 0;
+                var oxys = deviceMessage["body"]["oxys"] != null ? deviceMessage["body"]["oxys"] : 0;
                 var ats = deviceMessage["body"]["ats"] != null ? deviceMessage["body"]["ats"] : 0;
                 var pressure = deviceMessage["body"]["pressure"] != null ? deviceMessage["body"]["pressure"] : 0;
                 var cps = deviceMessage["body"]["cps"] != null ? deviceMessage["body"]["cps"] : 0;
@@ -63,7 +63,7 @@ namespace My.Function
 
 
                 log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
-                log.LogInformation($"Device:{deviceId} o2s is:{o2s}");
+                log.LogInformation($"Device:{deviceId} oxys is:{oxys}");
                 log.LogInformation($"Device:{deviceId} ats is:{ats}");
                 log.LogInformation($"Device:{deviceId} pressure is:{pressure}");
                 log.LogInformation($"Device:{deviceId} cps is:{cps}");
@@ -79,7 +79,7 @@ namespace My.Function
 
                 var updateProperty = new JsonPatchDocument();
                 updateProperty.AppendReplace("/deviceid", ID);
-                updateProperty.AppendReplace("/o2s", o2s.Value<double>());
+                updateProperty.AppendReplace("/oxys", oxys.Value<double>());
                 updateProperty.AppendReplace("/ats", ats.Value<double>());
                 updateProperty.AppendReplace("/pressure", pressure.Value<double>());
                 updateProperty.AppendReplace("/cps", cps.Value<double>());
