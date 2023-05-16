@@ -47,15 +47,15 @@ namespace My.Function
                 var ID = "deviceid1";
                 var oxys = deviceMessage["body"]["oxys"] != null ? deviceMessage["body"]["oxys"] : 0;
                 var ats = deviceMessage["body"]["ats"] != null ? deviceMessage["body"]["ats"] : 0;
-                var pressure = deviceMessage["body"]["pressure"] != null ? deviceMessage["body"]["pressure"] : 0;
-                double _pressure = 0;
+                var _pressure = deviceMessage["body"]["pressure"] != null ? deviceMessage["body"]["pressure"] : 0;
+                double pressure = 0;
                 Random rnd = new Random();
-                if(pressure.Value<double>() <= 1200)
+                if(_pressure.Value<double>() <= 1200)
                 {
-                   _pressure = rnd.Next(20, 30);
+                   pressure = rnd.Next(20, 30);
                 } else
                 {
-                    _pressure = rnd.Next(40, 50);
+                    pressure = rnd.Next(40, 50);
                 }
                 var cps = deviceMessage["body"]["cps"] != null ? deviceMessage["body"]["cps"] : 0;
                 var aps = deviceMessage["body"]["aps"] != null ? deviceMessage["body"]["aps"] : 0;
@@ -68,7 +68,7 @@ namespace My.Function
                 log.LogInformation($"Device:{deviceId} Device Id is:{ID}");
                 log.LogInformation($"Device:{deviceId} oxys is:{oxys}");
                 log.LogInformation($"Device:{deviceId} ats is:{ats}");
-                log.LogInformation($"Device:{deviceId} pressure is:{_pressure}");
+                log.LogInformation($"Device:{deviceId} pressure is:{pressure}");
                 log.LogInformation($"Device:{deviceId} cps is:{cps}");
                 log.LogInformation($"Device:{deviceId} aps is:{aps}");
                 log.LogInformation($"Device:{deviceId} sas is:{sas}");
@@ -96,7 +96,7 @@ namespace My.Function
                 updateProperty.AppendReplace("/deviceid", ID);
                 updateProperty.AppendReplace("/oxys", oxys.Value<double>());
                 updateProperty.AppendReplace("/ats", ats.Value<double>());
-                updateProperty.AppendReplace("/pressure", _pressure);
+                updateProperty.AppendReplace("/pressure", pressure);
                 updateProperty.AppendReplace("/cps", cps.Value<double>());
                 updateProperty.AppendReplace("/aps", aps.Value<double>());
                 updateProperty.AppendReplace("/sas", sas.Value<double>());
