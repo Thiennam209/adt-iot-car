@@ -26,7 +26,7 @@ az config set extension.use_dynamic_install=yes_without_prompt
 az extension add --name azure-iot -y
 
 # echo 'retrieve files'
-git clone https://github.com/Thiennam209/adt-iot-car.git
+git clone https://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@github.com/Thiennam209/adt-iot-car.git
 
 # echo 'input model'
 deviceId=$(az dt model create -n $adtname --models ./adt-iot-car/models/device.json --query [].id -o tsv)
